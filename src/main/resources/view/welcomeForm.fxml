@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.Group?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="581.0" prefWidth="361.0" styleClass="LoginPagebackgroundColor" stylesheets="@../style/loginPage.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.WelcomeFormController">
+   <children>
+      <Text layoutX="43.0" layoutY="148.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Connect" wrappingWidth="181.9678955078125">
+         <font>
+            <Font name="Bodoni MT" size="47.0" />
+         </font>
+      </Text>
+      <Text layoutX="43.0" layoutY="206.0" strokeType="OUTSIDE" strokeWidth="0.0" text="friends " wrappingWidth="181.9678955078125">
+         <font>
+            <Font name="Bodoni MT" size="47.0" />
+         </font>
+      </Text>
+      <Text layoutX="43.0" layoutY="263.0" strokeType="OUTSIDE" strokeWidth="0.0" text="easily &amp;" wrappingWidth="181.9678955078125">
+         <font>
+            <Font name="Bodoni MT" size="47.0" />
+         </font>
+      </Text>
+      <Text layoutX="43.0" layoutY="317.0" strokeType="OUTSIDE" strokeWidth="0.0" text="quickly" wrappingWidth="194.76788330078125">
+         <font>
+            <Font name="Bodoni MT" size="47.0" />
+         </font>
+      </Text>
+      <ImageView fitHeight="68.0" fitWidth="67.0" layoutX="110.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/logo.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="119.0" fitWidth="88.0" layoutX="146.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/logoname.png" />
+         </image>
+      </ImageView>
+      <Text layoutX="47.0" layoutY="355.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Our chat app is the perfect way to stay connected with friends." wrappingWidth="248.3678436279297">
+         <font>
+            <Font name="Arial Bold" size="12.0" />
+         </font>
+      </Text>
+      <Group layoutX="92.0" layoutY="401.0" />
+      <Text layoutX="132.0" layoutY="570.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Play Tech Pvt (Ltd)" wrappingWidth="115.56781005859375">
+         <font>
+            <Font name="Arial Bold" size="10.0" />
+         </font>
+      </Text>
+      <JFXButton buttonType="RAISED" layoutX="119.0" layoutY="436.0" prefHeight="46.0" prefWidth="146.0" style="-fx-border-radius: 20; -fx-background-radius: 20; -fx-background-color: #24786D;" text=" ">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <JFXButton layoutX="96.0" layoutY="436.0" onAction="#btnGetStartOnAction" prefHeight="46.0" prefWidth="146.0" style="-fx-background-color: #24786D; -fx-background-radius: 5;" text="Get start..." textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <ripplerFill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color red="0.16078431904315948" green="0.8392156958580017" blue="0.8313725590705872" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="0.1608395129442215" green="0.4000000059604645" blue="0.15259259939193726" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </ripplerFill>
+      </JFXButton>
+   </children>
+</AnchorPane>
