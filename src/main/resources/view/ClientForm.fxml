@@ -35,7 +35,7 @@
          </children>
       </AnchorPane>
       <BorderPane layoutX="-1.0" layoutY="526.0" prefHeight="54.0" prefWidth="362.0" style="-fx-background-color: #f5faf9;" />
-      <TextField layoutX="33.0" layoutY="534.0" prefHeight="38.0" prefWidth="246.0" promptText="Write your message " style="-fx-background-color: #f0f5f4; -fx-background-radius: 10;" />
+      <TextField fx:id="txtMessage" layoutX="33.0" layoutY="534.0" prefHeight="38.0" prefWidth="246.0" promptText="Write your message " style="-fx-background-color: #f0f5f4; -fx-background-radius: 10;" />
       <ImageView fitHeight="32.0" fitWidth="28.0" layoutX="321.0" layoutY="537.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../img/SENDbtn.png" />
