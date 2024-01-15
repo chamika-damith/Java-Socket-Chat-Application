@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="581.0" prefWidth="361.0" styleClass="LoginPagebackgroundColor" stylesheets="@../style/loginPage.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.WelcomeFormController">
+<AnchorPane fx:id="WelcomeRoot" prefHeight="581.0" prefWidth="361.0" styleClass="WelcomePagebackgroundColor" stylesheets="@../style/loginPage.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.WelcomeFormController">
    <children>
       <Text layoutX="43.0" layoutY="148.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Connect" wrappingWidth="181.9678955078125">
          <font>
@@ -55,12 +55,12 @@
             <Font name="Arial Bold" size="10.0" />
          </font>
       </Text>
-      <JFXButton buttonType="RAISED" layoutX="119.0" layoutY="436.0" prefHeight="46.0" prefWidth="146.0" style="-fx-border-radius: 20; -fx-background-radius: 20; -fx-background-color: #24786D;" text=" ">
+      <JFXButton buttonType="RAISED" layoutX="119.0" layoutY="436.0" prefHeight="46.0" prefWidth="146.0" style="-fx-border-radius: 20; -fx-background-radius: 20; -fx-background-color: #2897a1;" text=" ">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
-      <JFXButton layoutX="96.0" layoutY="436.0" onAction="#btnGetStartOnAction" prefHeight="46.0" prefWidth="146.0" style="-fx-background-color: #24786D; -fx-background-radius: 5;" text="Get start..." textFill="WHITE">
+      <JFXButton layoutX="96.0" layoutY="436.0" onAction="#btnGetStartOnAction" prefHeight="46.0" prefWidth="146.0" style="-fx-background-color: #2897a1; -fx-background-radius: 9; -fx-border-color: 233B2E;" text="Get start..." textFill="WHITE">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
@@ -72,12 +72,12 @@
                <stops>
                   <Stop>
                      <color>
-                        <Color red="0.16078431904315948" green="0.8392156958580017" blue="0.8313725590705872" />
+                        <Color red="0.16599999368190765" green="0.3218883275985718" blue="0.8299999833106995" />
                      </color>
                   </Stop>
                   <Stop offset="1.0">
                      <color>
-                        <Color red="0.1608395129442215" green="0.4000000059604645" blue="0.15259259939193726" />
+                        <Color red="0.19972708821296692" green="0.49473685026168823" blue="0.20956075191497803" />
                      </color>
                   </Stop>
                </stops>
