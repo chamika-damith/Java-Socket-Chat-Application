@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane fx:id="ClientRoot" prefHeight="581.0" prefWidth="361.0" styleClass="ClientPagebackgroundColor" stylesheets="@../style/loginPage.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.ClientFormController">
+   <children>
+      <AnchorPane prefHeight="46.0" prefWidth="361.0" style="-fx-background-color: #f0f5f4;">
+         <children>
+            <ImageView fitHeight="38.0" fitWidth="38.0" layoutX="17.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/mensPhoto.jpg" />
+               </image>
+            </ImageView>
+            <Text fx:id="txtNameField" layoutX="53.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="122.39996337890625">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Text>
+            <Text layoutX="67.0" layoutY="36.0" opacity="0.55" strokeType="OUTSIDE" strokeWidth="0.0" text="Active now">
+               <font>
+                  <Font name="Arial Bold" size="10.0" />
+               </font>
+            </Text>
+            <Circle fill="#00ff37" layoutX="58.0" layoutY="33.0" radius="4.0" stroke="BLACK" strokeType="INSIDE" />
+         </children>
+      </AnchorPane>
+      <BorderPane layoutX="-1.0" layoutY="526.0" prefHeight="54.0" prefWidth="362.0" style="-fx-background-color: #f5faf9;" />
+      <TextField layoutX="33.0" layoutY="534.0" prefHeight="38.0" prefWidth="246.0" promptText="Write your message " style="-fx-background-color: #f0f5f4; -fx-background-radius: 10;" />
+      <ImageView fitHeight="32.0" fitWidth="28.0" layoutX="321.0" layoutY="537.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/SENDbtn.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="26.0" fitWidth="20.0" layoutX="286.0" layoutY="542.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/emoji.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="28.0" fitWidth="20.0" layoutX="9.0" layoutY="543.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/choose.png" />
+         </image>
+      </ImageView>
+      <JFXButton buttonType="RAISED" layoutX="5.0" layoutY="538.0" prefHeight="28.0" prefWidth="28.0" ripplerFill="#03adb9" text=" ">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <JFXButton buttonType="RAISED" layoutX="282.0" layoutY="538.0" prefHeight="28.0" prefWidth="28.0" ripplerFill="#03adb9" text=" ">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <JFXButton buttonType="RAISED" layoutX="315.0" layoutY="531.0" onAction="#btnSendOnAction" prefHeight="38.0" prefWidth="37.0" ripplerFill="#03adb9" text=" ">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+   </children>
+</AnchorPane>

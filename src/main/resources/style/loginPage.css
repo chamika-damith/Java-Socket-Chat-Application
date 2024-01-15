@@ -1,6 +1,9 @@
 .WelcomePagebackgroundColor{
-    -fx-background-color: linear-gradient(to right,#AA80CB, #87A1D4);
+    -fx-background-color: linear-gradient(to right,#dbbdf2, #b1c7f2);
 }
 .LoginPagebackgroundColor{
     -fx-background-color: linear-gradient(to right,#312234, #362341);
+}
+.ClientPagebackgroundColor{
+    -fx-background-color: linear-gradient(to right,#cef5de, #d5edeb);
 }
