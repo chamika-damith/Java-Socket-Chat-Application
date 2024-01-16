@@ -1,37 +1,31 @@
 package org.example.server;
 
-import java.io.*;
+import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
 
 public class Server {
+    private static ArrayList<ClientHandler> clients = new ArrayList<>();
 
     public static void main(String[] args) {
-        try {
-            ServerSocket serverSocket = new ServerSocket(3000);
-            System.out.println("server started");
+        try (ServerSocket serverSocket = new ServerSocket(3003)) {
+            System.out.println("Server started!");
 
-            Socket socket = serverSocket.accept();
-            System.out.println("Client Accepted!");
+            while (true) {
+                try {
+                    Socket socket = serverSocket.accept();
+                    System.out.println("New client connected!");
 
-            DataOutputStream dataOutputStream = new DataOutputStream(socket.getOutputStream());
-            DataInputStream dataInputStream = new DataInputStream(socket.getInputStream());
-            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-
-            String message = "";
-            String reply = "";
-
-            while (!message.equals("finish")) {
-                message = dataInputStream.readUTF();
-                System.out.println("Client: " + message);
-
-                reply = bufferedReader.readLine();
-                dataOutputStream.writeUTF(reply);
-                dataOutputStream.flush();
+                    ClientHandler clientHandler = new ClientHandler(socket, clients);
+                    clients.add(clientHandler);
+                    clientHandler.start();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
-
-        } catch (Exception ex) {
-            System.out.println(ex.getMessage());
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }
