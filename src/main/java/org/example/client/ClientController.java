@@ -14,6 +14,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
+import org.example.controller.LoginFormController;
 
 import java.io.IOException;
 import java.net.Socket;
@@ -31,6 +32,8 @@ public class ClientController implements Initializable {
     private Client client;
 
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        txtNameField.setText(LoginFormController.username);
+
         try {
             client = new Client(new Socket("localhost", 3003));
             System.out.println("Connected to Server");
