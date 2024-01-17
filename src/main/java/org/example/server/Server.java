@@ -9,7 +9,7 @@ public class Server {
     private static ArrayList<ClientHandler> clients = new ArrayList<>();
 
     public static void main(String[] args) {
-        try (ServerSocket serverSocket = new ServerSocket(3003)) {
+        try (ServerSocket serverSocket = new ServerSocket(3004)) {
             System.out.println("Server started!");
 
             while (true) {

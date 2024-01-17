@@ -38,17 +38,20 @@ public class Client {
         }
     }
 
-    public void sendMessageToServer(String messageToServer) {
-        try{
-            bufferedWriter.write(messageToServer);
+    public void sendMessageToServer(String senderName, String messageToServer) {
+        try {
+            // Format the message as "senderName: messageContent"
+            String formattedMessage = senderName + ": " + messageToServer;
+            bufferedWriter.write(formattedMessage);
             bufferedWriter.newLine();
             bufferedWriter.flush();
-        }catch(IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
             System.out.println("Error sending message to the Server!");
             closeEverything(socket, bufferedReader, bufferedWriter);
         }
     }
+
 
     public void receiveMessageFromServer(VBox vbox_messages) {
         new Thread(() -> {
@@ -59,7 +62,18 @@ public class Client {
                         // Handle disconnection gracefully
                         break;
                     }
-                    ClientController.addLabel(messageFromServer, vbox_messages);
+
+                    // Split the message into senderName and messageContent
+                    String[] parts = messageFromServer.split(": ", 2);
+
+                    if (parts.length == 2) {
+                        String senderName = parts[0];
+                        String messageContent = parts[1];
+
+                        // Pass senderName and messageContent to addLabel method
+                        ClientController.addLabel(senderName, messageContent, vbox_messages);
+                    }
+
                 }
             } catch (IOException e) {
                 e.printStackTrace();
