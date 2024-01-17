@@ -36,7 +36,7 @@
          </children>
       </AnchorPane>
       <BorderPane layoutX="-1.0" layoutY="526.0" prefHeight="54.0" prefWidth="362.0" style="-fx-background-color: #f5faf9;" />
-      <TextField fx:id="txtMessage" layoutX="33.0" layoutY="534.0" prefHeight="38.0" prefWidth="246.0" promptText="Write your message " style="-fx-background-color: #f0f5f4; -fx-background-radius: 10;" />
+      <TextField fx:id="txtMessage" layoutX="33.0" layoutY="534.0" onAction="#txtMessageOnAction" prefHeight="38.0" prefWidth="246.0" promptText="Write your message " style="-fx-background-color: #f0f5f4; -fx-background-radius: 10;" />
       <ImageView fitHeight="32.0" fitWidth="28.0" layoutX="321.0" layoutY="537.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../img/SENDbtn.png" />
@@ -74,12 +74,12 @@
       </ScrollPane>
       <AnchorPane fx:id="emojiPane" layoutX="268.0" layoutY="259.0" prefHeight="267.0" prefWidth="46.0">
          <children>
-            <ImageView fitHeight="46.0" fitWidth="53.0" layoutX="6.0" layoutY="1.0" onMouseClicked="#angrymoodOnAction" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="46.0" fitWidth="53.0" layoutX="4.0" layoutY="1.0" onMouseClicked="#angrymoodOnAction" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../img/emoji/angrymood.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="38.0" fitWidth="38.0" layoutX="10.0" layoutY="57.0" onMouseClicked="#smilemoodOnAction" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="38.0" fitWidth="38.0" layoutX="8.0" layoutY="57.0" onMouseClicked="#smilemoodOnAction" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../img/emoji/facewithSmile.png" />
                </image>
@@ -89,12 +89,12 @@
                   <Image url="@../img/emoji/smilingfacewithsunglasses.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="46.0" fitWidth="38.0" layoutX="7.0" layoutY="160.0" onMouseClicked="#heartmoodOnAction" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="46.0" fitWidth="38.0" layoutX="8.0" layoutY="160.0" onMouseClicked="#heartmoodOnAction" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../img/emoji/smilingfacewithheart.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="46.0" fitWidth="38.0" layoutX="10.0" layoutY="213.0" onMouseClicked="#likeOnAction" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="46.0" fitWidth="38.0" layoutX="8.0" layoutY="213.0" onMouseClicked="#likeOnAction" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../img/emoji/like.png" />
                </image>

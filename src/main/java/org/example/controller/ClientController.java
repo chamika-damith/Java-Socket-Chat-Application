@@ -126,18 +126,32 @@ public class ClientController implements Initializable {
     }
 
     public void angrymoodOnAction(MouseEvent mouseEvent) {
+        txtMessage.appendText("\uD83D\uDE08");
+        emojiPane.setVisible(false);
     }
 
     public void smilemoodOnAction(MouseEvent mouseEvent) {
+        txtMessage.appendText("\uD83D\uDE02");
+        emojiPane.setVisible(false);
     }
 
     public void glassmoodOnAction(MouseEvent mouseEvent) {
+        txtMessage.appendText("\uD83D\uDE0E");
+        emojiPane.setVisible(false);
     }
 
     public void heartmoodOnAction(MouseEvent mouseEvent) {
+        txtMessage.appendText("\uD83D\uDE0D");
+        emojiPane.setVisible(false);
     }
 
     public void likeOnAction(MouseEvent mouseEvent) {
+        txtMessage.appendText("\uD83D\uDC4D");
+        emojiPane.setVisible(false);
+    }
+
+    public void txtMessageOnAction(ActionEvent actionEvent) {
+        btnSendOnAction(actionEvent);
     }
 
     private class Client{
