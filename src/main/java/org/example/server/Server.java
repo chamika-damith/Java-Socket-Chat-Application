@@ -6,7 +6,7 @@ import java.net.Socket;
 import java.util.ArrayList;
 
 public class Server {
-    private static ArrayList<ClientHandler> clients = new ArrayList<>();
+    private static ArrayList<Clients> clients = new ArrayList<>();
 
     public static void main(String[] args) {
         try (ServerSocket serverSocket = new ServerSocket(3004)) {
@@ -17,9 +17,9 @@ public class Server {
                     Socket socket = serverSocket.accept();
                     System.out.println("New client connected!");
 
-                    ClientHandler clientHandler = new ClientHandler(socket, clients);
-                    clients.add(clientHandler);
-                    clientHandler.start();
+                    Clients clients = new Clients(socket, Server.clients);
+                    Server.clients.add(clients);
+                    clients.start();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

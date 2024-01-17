@@ -7,13 +7,13 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.ArrayList;
 
-public class ClientHandler extends Thread {
+public class Clients extends Thread {
     private Socket socket;
-    private ArrayList<ClientHandler> clients;
+    private ArrayList<Clients> clients;
     private BufferedReader reader;
     private PrintWriter writer;
 
-    public ClientHandler(Socket socket, ArrayList<ClientHandler> clients) {
+    public Clients(Socket socket, ArrayList<Clients> clients) {
         try {
             this.socket = socket;
             this.clients = clients;
@@ -24,8 +24,8 @@ public class ClientHandler extends Thread {
         }
     }
 
-    private void broadcast(String message, ClientHandler sender) {
-        for (ClientHandler client : clients) {
+    private void broadcast(String message, Clients sender) {
+        for (Clients client : clients) {
             if (client != sender) {
                 client.sendMessage(message);
             }
