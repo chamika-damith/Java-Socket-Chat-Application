@@ -6,8 +6,11 @@ import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
@@ -15,10 +18,13 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
+import javafx.stage.FileChooser;
 
 import java.io.*;
 import java.net.Socket;
 import java.net.URL;
+import java.nio.file.Files;
+import java.util.Base64;
 import java.util.ResourceBundle;
 
 public class ClientController implements Initializable {
@@ -28,9 +34,13 @@ public class ClientController implements Initializable {
     public VBox vBox;
     public JFXButton button_send;
     public AnchorPane emojiPane;
+    public AnchorPane imagePane;
+    public ImageView imageView;
     private Client client;
 
     private static String name;
+
+    private File file;
 
 
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -44,6 +54,26 @@ public class ClientController implements Initializable {
         try {
             client = new Client(new Socket("localhost", 3004));
             System.out.println("Connected to Server");
+
+            if (LoginFormController.username != null) {
+                //adding name of client which join the chat
+                String joinMessage = "You have joined the chat";
+
+                Label text = new Label(joinMessage);
+                text.getStyleClass().add("join-text");
+                HBox hBox = new HBox();
+                hBox.getChildren().add(text);
+                hBox.setAlignment(Pos.CENTER);
+
+                Platform.runLater(() -> {
+                    vBox.getChildren().add(hBox);
+
+                    HBox hBox1 = new HBox();
+                    hBox1.setPadding(new Insets(5, 5, 5, 10));
+                    vBox.getChildren().add(hBox1);
+                });
+            }
+
         } catch (IOException e) {
             e.printStackTrace();
             System.out.println("Error creating Client ... ");
@@ -89,6 +119,7 @@ public class ClientController implements Initializable {
     public void btnSendOnAction(ActionEvent actionEvent) {
         String messageToSend = txtMessage.getText();
         if (!(messageToSend.isEmpty())) {
+
             HBox hBox = new HBox();
             hBox.setAlignment(Pos.CENTER_RIGHT);
             hBox.setPadding(new Insets(5, 5, 5, 10));
@@ -154,6 +185,16 @@ public class ClientController implements Initializable {
         btnSendOnAction(actionEvent);
     }
 
+    public void btnFileOnAction(ActionEvent actionEvent) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Select the image");
+        FileChooser.ExtensionFilter imageFilter =
+                new FileChooser.ExtensionFilter("Image Files", "*.jpg", "*.jpeg", "*.png", "*.gif");
+        fileChooser.getExtensionFilters().add(imageFilter);
+        file = fileChooser.showOpenDialog(txtMessage.getScene().getWindow());
+
+    }
+
     private class Client{
         private Socket socket;
         private BufferedReader bufferedReader;
@@ -164,6 +205,7 @@ public class ClientController implements Initializable {
                 this.socket = socket;
                 this.bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
                 this.bufferedWriter = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
+
             }catch(IOException e){
                 System.out.println("Error creating Client!");
                 e.printStackTrace();
@@ -212,15 +254,15 @@ public class ClientController implements Initializable {
                             break;
                         }
 
-                        // Split the message into senderName and messageContent
+                        // Process text message
                         String[] parts = messageFromServer.split(": ", 2);
 
                         if (parts.length == 2) {
                             String senderName = parts[0];
                             String messageContent = parts[1];
 
-                            // Pass senderName and messageContent to addLabel method
-                            ClientController.addLabel(senderName, messageContent, vbox_messages);
+                            // Use Platform.runLater to update UI from a non-JavaFX thread
+                            Platform.runLater(() -> addLabel(senderName, messageContent, vbox_messages));
                         }
 
                     }

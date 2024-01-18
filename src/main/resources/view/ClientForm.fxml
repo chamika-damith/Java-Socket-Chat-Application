@@ -52,7 +52,7 @@
             <Image url="@../img/choose.png" />
          </image>
       </ImageView>
-      <JFXButton buttonType="RAISED" layoutX="5.0" layoutY="538.0" prefHeight="28.0" prefWidth="28.0" ripplerFill="#03adb9" text=" ">
+      <JFXButton buttonType="RAISED" layoutX="5.0" layoutY="538.0" onAction="#btnFileOnAction" prefHeight="28.0" prefWidth="28.0" ripplerFill="#03adb9" text=" ">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -99,6 +99,11 @@
                   <Image url="@../img/emoji/like.png" />
                </image>
             </ImageView>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="imagePane" layoutX="4.0" layoutY="50.0" prefHeight="199.0" prefWidth="338.0">
+         <children>
+            <ImageView fx:id="imageView" fitHeight="163.0" fitWidth="136.0" layoutX="188.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true" />
          </children>
       </AnchorPane>
    </children>
