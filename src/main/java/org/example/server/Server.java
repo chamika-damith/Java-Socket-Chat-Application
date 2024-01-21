@@ -19,7 +19,7 @@ public class Server {
 
 
     public static void startServer() {
-        System.out.println("Server started at port : " + 3000);
+        System.out.println("Server started");
         new Thread(() -> {
 
             try {
@@ -28,20 +28,20 @@ public class Server {
 
                     Socket socket = ss.accept();
                     socketArrayList.add(socket);
-                    /*Notifying the other clients who joined the chat.👇*/
+                    //Notifying the other clients who joined the chat
                     for (Socket s : socketArrayList) {
                         if (s.getPort() == socket.getPort()) {
-                            /*Avoid sending the message to the sender.👇*/
+                            //Avoid sending the message to the sender
                             continue;
                         }
                         DataOutputStream dos = new DataOutputStream(s.getOutputStream());
                         int index = socketArrayList.indexOf(socket);
-                        dos.writeUTF(LoginFormController.clientsNames.get(index) + " " + "has joined the chat.");
+                        //dos.writeUTF(LoginFormController.clientsNames.get(index) + " " + "has joined the chat.");
                         dos.flush();
                     }
                     System.out.println("Client connected to the server from port : " + socket.getPort());
 
-                    /*Handling each client from a separate thread.👇*/
+                    //Handling each client from a separate thread
                     handleClient(socket);
 
 
@@ -59,7 +59,7 @@ public class Server {
 
     public static void handleClient(Socket socket) {
         new Thread(() -> {
-            /*Adding the current thread to an arrayList.*/
+            //Adding the current thread to an arrayList
             threadList.add(Thread.currentThread());
 
             String clientMsg = "";
@@ -67,9 +67,9 @@ public class Server {
                 while (true) {
                     DataInputStream dis = new DataInputStream(socket.getInputStream());
                     clientMsg = dis.readUTF();
-                    /*Checking if an image has received.👇*/
-                    /*Checking if the client sent an image.👇*/
-                    if (clientMsg.equals("<Image>")) {
+                    //Checking if an image has received
+                    //Checking if the client sent an image
+                    if (clientMsg.equals("img")) {
                         handleReceivedImage(dis, socket);
                     } else {
                         sendMsgToOthers(clientMsg, socket);
@@ -93,7 +93,7 @@ public class Server {
 
     public static void handleReceivedImage(DataInputStream dis, Socket senderSocket) {
         try {
-            /*Reading the image length.👇*/
+            //Reading the image length
             int imageDataLength = dis.readInt();
             byte[] imageData = new byte[imageDataLength];
             dis.readFully(imageData);
@@ -109,17 +109,17 @@ public class Server {
         for (Socket s : socketArrayList) {
             try {
                 if (s.getPort() == senderSocket.getPort()) {
-                    /*Avoid sending the image to the sender.👇*/
+                    //Avoid sending the image to the sender
                     continue;
                 }
                 DataOutputStream dos = new DataOutputStream(s.getOutputStream());
 
-                /* Sending a special message indicating the start of an image transmission.👇*/
-                dos.writeUTF("<Image>");
+                //Sending a special message indicating the start of an image transmission
+                dos.writeUTF("img");
 
-                /* Letting the server know the size of the image.(This is useful to allocate resources properly.)👇*/
+                //Letting the server know the size of the image.This is useful to allocate resources properly
                 dos.writeInt(imageData.length);
-                /* Sending the image data.👇*/
+                // Sending the image data
                 dos.write(imageData);
                 dos.flush();
             } catch (IOException e) {
@@ -136,12 +136,12 @@ public class Server {
         for (Socket s : socketArrayList) {
             try {
                 if (s.getPort() == socket.getPort()) {
-                    //Avoid sending the message to the sender.
+                    //Avoid sending the message to the sender
                     continue;
 
                 }
                 DataOutputStream dos = new DataOutputStream(s.getOutputStream());
-                /*Since socketArray index == clientsNames array client name index.*/
+                //Since socketArray index == clientsNames array client name index
                 index = socketArrayList.indexOf(socket);
                 dos.writeUTF(LoginFormController.clientsNames.get(index) + " : " + msg);
                 dos.flush();
@@ -155,13 +155,19 @@ public class Server {
 
     }
 
-    public static void handleExitedClient(int exitedClientIndex){
-        Socket exitedClient = Server.socketArrayList.get(exitedClientIndex);
-        for (Socket s : Server.socketArrayList) {
-            if (s.getPort() == exitedClient.getPort()) {
-                continue;
+    public static void handleExitedClient(int exitedClientIndex) {
+        if (exitedClientIndex < 0 || exitedClientIndex >= Server.socketArrayList.size()) {
+            // Handle the error, log, or show an alert
+            return;
+        }
 
+        Socket exitedClient = Server.socketArrayList.get(exitedClientIndex);
+        for (int i = 0; i < Server.socketArrayList.size(); i++) {
+            if (i == exitedClientIndex) {
+                continue;
             }
+
+            Socket s = Server.socketArrayList.get(i);
             try {
                 DataOutputStream dos = new DataOutputStream(s.getOutputStream());
                 dos.writeUTF(LoginFormController.clientsNames.get(exitedClientIndex) + " has left the chat!");
@@ -171,21 +177,21 @@ public class Server {
                     new Alert(Alert.AlertType.ERROR, "Error while handling the client exit! : " + e.getLocalizedMessage()).show();
                 });
             }
-
         }
-        /*Closing the socket and interrupting the relevant thread.👇*/
+
+        // Closing the socket and interrupting the relevant thread
         new Thread(() -> {
             try {
                 exitedClient.close();
-                Server.threadList.get(exitedClientIndex).interrupt();
-
+                if (exitedClientIndex < Server.threadList.size()) {
+                    Server.threadList.get(exitedClientIndex).interrupt();
+                }
             } catch (IOException e) {
                 Platform.runLater(() -> {
                     new Alert(Alert.AlertType.ERROR, "Error while exiting the client socket. : " + e.getLocalizedMessage()).show();
                 });
             }
-        });
-
+        }).start();  // Start the thread
     }
 
 

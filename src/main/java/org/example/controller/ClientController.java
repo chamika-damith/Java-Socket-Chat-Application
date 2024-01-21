@@ -2,6 +2,8 @@ package org.example.controller;
 import animatefx.animation.LightSpeedIn;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -24,6 +26,7 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -61,13 +64,13 @@ public class ClientController implements Initializable {
         emojiPane.setVisible(false);
 
 
-        /*Detecting the height changes in the Vbox👇*/
+        //Detecting the height changes in the Vbox
         ChangeListener<Number> heightListener = new ChangeListener<Number>() {
             @Override
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-                /*Check if the height has changed.👇*/
+                //Check if the height has changed
                 if (newValue.doubleValue() != oldValue.doubleValue()) {
-                    /*Scroll to the last point.👇*/
+                    //Scroll to the last point
                     sp.setVvalue(1.0);
                 }
             }
@@ -82,12 +85,36 @@ public class ClientController implements Initializable {
 
             try {
                 socket = new Socket("localhost", 3000);
-                System.out.println("Client started at port : " + 3000);
+                System.out.println("Client started");
+
+                //adding name of client which join the chat
+                String joinMessage = "You have joined the chat";
+
+                Label textjoin = new Label(joinMessage);
+                textjoin.getStyleClass().add("join-text");
+                HBox hBoxJoin = new HBox();
+                hBoxJoin.getChildren().add(textjoin);
+                hBoxJoin.setAlignment(Pos.CENTER);
+
+                Platform.runLater(() -> {
+                    myTextBox.getChildren().add(hBoxJoin);
+
+                    HBox hBox1 = new HBox();
+                    hBox1.setPadding(new Insets(5, 5, 5, 10));
+                    myTextBox.getChildren().add(hBox1);
+
+                    // Schedule a task to hide the HBox after 5 seconds
+                    Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(5), event -> {
+                        myTextBox.getChildren().remove(hBoxJoin);
+                    }));
+                    timeline.play();
+                });
+
                 while (true) {
                     dis = new DataInputStream(socket.getInputStream());
                     msg = dis.readUTF();
-//                   /*If the message was an image.👇*/
-                    if (msg.equals("<Image>")) {
+                  //If the message was an image
+                    if (msg.equals("img")) {
                         handleReceivedImage(dis);
                     } else {
                         /*If it was a normal msg.👇*/

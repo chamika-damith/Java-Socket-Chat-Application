@@ -21,17 +21,13 @@ import java.util.ResourceBundle;
 public class LoginFormController implements Initializable {
     public static String clientName = "";
     public static ArrayList<String> clientsNames = new ArrayList<>();
-    public static boolean exitStatus = false;
-    public static int exitedClientIndex;
-    public ImageView i1;
-    public Label l1;
     public JFXTextField t1;
     public JFXButton b1;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        /*Starting the server👇*/
+        //Starting the server
         Server.startServer();
 
 
@@ -47,8 +43,8 @@ public class LoginFormController implements Initializable {
         } catch (IOException e) {
             new Alert(Alert.AlertType.ERROR, "Error while loading the client UI : " + e.getLocalizedMessage()).show();
         }
-        primaryStage.getIcons().add(new Image("/image/client.png"));
-        primaryStage.setTitle(clientName);
+        primaryStage.getIcons().add(new Image("/image/chat.png"));
+        primaryStage.setTitle(clientName+" chat");
         primaryStage.show();
         primaryStage.setResizable(false);
 
@@ -58,7 +54,7 @@ public class LoginFormController implements Initializable {
             alert.setHeaderText("Confirm Exit!");
             alert.setContentText("Are you sure you want to exit the chatroom?");
 
-            // Handling the user's response.
+            // Handling the user's response
             ButtonType result = alert.showAndWait().orElse(ButtonType.CANCEL);
             if (result == ButtonType.OK) {
                 Server.handleExitedClient(clientsNames.indexOf(primaryStage.getTitle()));
