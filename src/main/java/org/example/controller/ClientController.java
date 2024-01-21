@@ -89,7 +89,6 @@ public class ClientController implements Initializable {
 
                 //adding name of client which join the chat
                 String joinMessage = "You have joined the chat";
-
                 Label textjoin = new Label(joinMessage);
                 textjoin.getStyleClass().add("join-text");
                 HBox hBoxJoin = new HBox();
@@ -110,24 +109,41 @@ public class ClientController implements Initializable {
                     timeline.play();
                 });
 
+
                 while (true) {
                     dis = new DataInputStream(socket.getInputStream());
                     msg = dis.readUTF();
+
                   //If the message was an image
                     if (msg.equals("img")) {
                         handleReceivedImage(dis);
                     } else {
-                        /*If it was a normal msg.👇*/
-                        HBox hBox = new HBox();
-                        Text text = new Text(msg);
-                        text.setFill(Color.color(0.934, 0.945, 0.996));
-                        text.setStyle("-fx-font-size: 20px;");
-                        text.setText(msg);
+                        //If it was a normal msg
 
-                        TextFlow textFlow = new TextFlow(text);
-                        textFlow.setStyle("-fx-color : rgb(239, 242, 255);" +
-                                "-fx-background-color: rgb(15, 125, 242);" +
-                                "-fx-background-radius: 20px");
+                        String serverMessage=msg;
+                        String[] parts = serverMessage.split(": ", 2);
+
+                        String senderName = null;
+                        String messageContent=null;
+
+                        if (parts.length == 2) {
+                            senderName = parts[0];
+                            messageContent = parts[1];
+                        }
+
+                        Text senderText = new Text(senderName+": ");
+                        senderText.setFill(Color.BLACK);
+
+                        HBox hBox = new HBox();
+                        Text text = new Text(messageContent);
+                        text.setFill(Color.color(0.934, 0.945, 0.996));
+                        text.setStyle("-fx-font-size: 14px;");
+                        text.setText(messageContent);
+
+                        TextFlow textFlow = new TextFlow(senderText,text);
+                        textFlow.setStyle("-fx-background-color: linear-gradient(to right, #a8adad, #858c8c);" +
+                                "-fx-font-size: 14px;"+
+                                "-fx-background-radius: 8px;");
                         textFlow.setPadding(new Insets(5, 10, 8, 10));
 
                         hBox.setAlignment(Pos.CENTER_LEFT);
@@ -138,7 +154,6 @@ public class ClientController implements Initializable {
                             @Override
                             public void run() {
                                 myTextBox.getChildren().add(hBox);
-                                new LightSpeedIn(hBox).play();
                             }
                         });
 
@@ -174,13 +189,17 @@ public class ClientController implements Initializable {
 
                 Text text = new Text(msgField.getText());
                 text.setFill(Color.color(0.934, 0.945, 0.996));
-                text.setStyle("-fx-font-size: 20px;");
-                text.setText("Me : " + msgField.getText());
+                text.setStyle("-fx-font-size: 14px;");
+                text.setText(msgField.getText());
 
-                TextFlow textFlow = new TextFlow(text);
-                textFlow.setStyle("-fx-color : rgb(239, 242, 255);" +
-                        "-fx-background-color: rgb(15, 125, 242);" +
-                        "-fx-background-radius: 20px");
+                Text senderText = new Text("me :  ");
+                senderText.setFill(Color.BLACK);
+
+                TextFlow textFlow = new TextFlow(senderText,text);
+                textFlow.setStyle("-fx-color: rgb(239, 242, 255);" +
+                        "-fx-background-color: linear-gradient(to right, #83e7eb, #3948ed);" +
+                        "-fx-font-size: 14px;" +
+                        "-fx-background-radius: 6px;");
                 textFlow.setPadding(new Insets(5, 10, 8, 10));
 
                 hBox.setAlignment(Pos.CENTER_RIGHT);
@@ -191,8 +210,6 @@ public class ClientController implements Initializable {
                     @Override
                     public void run() {
                         myTextBox.getChildren().add(hBox);
-                        new LightSpeedIn(hBox).play();
-
                     }
                 });
                 try {
@@ -230,8 +247,8 @@ public class ClientController implements Initializable {
             /* Create an ImageView with the Image.👇*/
             ImageView imageView = new ImageView(image);
             imageView.setPreserveRatio(true);
-            imageView.setFitWidth(500);
-            imageView.setFitHeight(500);
+            imageView.setFitWidth(200);
+            imageView.setFitHeight(200);
 
             //ADD A scroll pane to the image container.👇
             ScrollPane scrollPane = new ScrollPane();
@@ -274,7 +291,7 @@ public class ClientController implements Initializable {
                 /*Sending the image through output stream!👇*/
                 DataOutputStream dos2 = new DataOutputStream(socket.getOutputStream());
                 /*Letting the server know an image is being sent.👇*/
-                dos2.writeUTF("<Image>");
+                dos2.writeUTF("img");
                 /*Writing the length of the image data.👇*/
                 dos2.writeInt(imageData.length);
                 dos2.write(imageData);
@@ -291,8 +308,8 @@ public class ClientController implements Initializable {
                 /* Create an ImageView with the Image.👇*/
                 ImageView imageView = new ImageView(image2);
                 imageView.setPreserveRatio(true);
-                imageView.setFitWidth(500);
-                imageView.setFitHeight(500);
+                imageView.setFitWidth(200);
+                imageView.setFitHeight(200);
                 //ADD A scroll pane to the image container.👇
                 ScrollPane scrollPane = new ScrollPane();
                 scrollPane.setContent(imageView);
