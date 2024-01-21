@@ -1,35 +1,76 @@
 package org.example.controller;
-
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
+import javafx.fxml.Initializable;
 import javafx.scene.Scene;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import org.example.server.Server;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.ResourceBundle;
 
-public class LoginFormController {
-    public AnchorPane loginRoot;
-    public JFXTextField txtUsername;
+public class LoginFormController implements Initializable {
+    public static String clientName = "";
+    public static ArrayList<String> clientsNames = new ArrayList<>();
+    public static boolean exitStatus = false;
+    public static int exitedClientIndex;
+    public ImageView i1;
+    public Label l1;
+    public JFXTextField t1;
+    public JFXButton b1;
 
-    public static String username;
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+
+        /*Starting the server👇*/
+        Server.startServer();
 
 
-    public void btnLoginOnAction(ActionEvent actionEvent) throws IOException {
-        setUsername();
-        Parent parent=FXMLLoader.load(getClass().getResource("/view/ClientForm.fxml"));
-        Scene scene = new Scene(parent);
-        Stage stage = new Stage();
-        stage.setScene(scene);
-        stage.centerOnScreen();
-        stage.setTitle("Client Form");
-        stage.show();
-        txtUsername.clear();
     }
 
-    public void setUsername(){
-        username=txtUsername.getText();
+    public void loginOnAction(ActionEvent actionEvent) {
+        clientName = t1.getText();
+        clientsNames.add(clientName);
+        t1.clear();
+        Stage primaryStage = new Stage();
+        try {
+            primaryStage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/Client.fxml"))));
+        } catch (IOException e) {
+            new Alert(Alert.AlertType.ERROR, "Error while loading the client UI : " + e.getLocalizedMessage()).show();
+        }
+        primaryStage.getIcons().add(new Image("/image/client.png"));
+        primaryStage.setTitle(clientName);
+        primaryStage.show();
+        primaryStage.setResizable(false);
+
+        primaryStage.setOnCloseRequest(event -> {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Confirmation!");
+            alert.setHeaderText("Confirm Exit!");
+            alert.setContentText("Are you sure you want to exit the chatroom?");
+
+            // Handling the user's response.
+            ButtonType result = alert.showAndWait().orElse(ButtonType.CANCEL);
+            if (result == ButtonType.OK) {
+                Server.handleExitedClient(clientsNames.indexOf(primaryStage.getTitle()));
+                primaryStage.close();
+
+
+            } else {
+                // Cancelling the close request.
+                event.consume();
+            }
+        });
+
+
     }
 }

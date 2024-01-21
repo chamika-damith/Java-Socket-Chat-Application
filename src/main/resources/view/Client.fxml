@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="658.0" prefWidth="402.0" style="-fx-background-color: #f0f5f4;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.ClientController">
+   <children>
+      <ImageView fitHeight="58.0" fitWidth="47.0" layoutX="14.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/person.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="l1" layoutX="66.0" layoutY="12.0" prefHeight="31.0" prefWidth="124.0">
+         <font>
+            <Font name="Arial Black" size="12.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="13.0" fitWidth="9.0" layoutX="66.0" layoutY="48.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/active.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="31.0" fitWidth="38.0" layoutX="361.0" layoutY="610.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/SENDbtn.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="26.0" fitWidth="30.0" layoutX="7.0" layoutY="613.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/choose.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="31.0" fitWidth="36.0" layoutX="344.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/clear.png" />
+         </image>
+      </ImageView>
+      <JFXButton fx:id="cc" ellipsisString="    " layoutX="345.0" layoutY="21.0" onAction="#ccOnAction" prefHeight="19.0" prefWidth="24.0" />
+      <ScrollPane fx:id="sp" hbarPolicy="NEVER" layoutX="-2.0" layoutY="64.0" prefHeight="528.0" prefWidth="399.0" vbarPolicy="NEVER">
+         <content>
+            <VBox fx:id="myTextBox" prefHeight="530.0" prefWidth="396.0" styleClass="ClientPagebackgroundColor" stylesheets="@../style/loginPage.css" />
+         </content>
+      </ScrollPane>
+      <JFXButton fx:id="imageButton" ellipsisString="    " layoutX="7.0" layoutY="611.0" onAction="#imageHandler" prefHeight="26.0" prefWidth="26.0" text="Button" />
+      <JFXButton fx:id="sendButton" ellipsisString="    " layoutX="361.0" layoutY="609.0" onAction="#sendButtonOnAction" prefHeight="31.0" prefWidth="31.0" text=" " />
+      <JFXTextField fx:id="msgField" layoutX="43.0" layoutY="605.0" onAction="#sendButtonOnAction" prefHeight="38.0" prefWidth="265.0" promptText="Write your message " unFocusColor="WHITE">
+         <font>
+            <Font name="Arial Bold" size="13.0" />
+         </font></JFXTextField>
+      <ImageView fitHeight="26.0" fitWidth="26.0" layoutX="320.0" layoutY="613.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/emoji.png" />
+         </image>
+      </ImageView>
+      <AnchorPane fx:id="emojiPane" layoutX="304.0" layoutY="303.0" prefHeight="301.0" prefWidth="54.0">
+         <children>
+            <ImageView fitHeight="47.0" fitWidth="47.0" layoutX="4.0" layoutY="29.0" onMouseClicked="#angrymoodOnAction" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../image/emoji/angrymood.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="38.0" fitWidth="47.0" layoutX="8.0" layoutY="87.0" onMouseClicked="#smilemoodOnAction" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../image/emoji/facewithSmile.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="38.0" fitWidth="38.0" layoutX="9.0" layoutY="145.0" onMouseClicked="#heartmoodOnAction" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../image/emoji/smilingfacewithheart.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="38.0" fitWidth="38.0" layoutX="10.0" layoutY="201.0" onMouseClicked="#glassmoodOnAction" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../image/emoji/smilingfacewithsunglasses.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="38.0" fitWidth="38.0" layoutX="9.0" layoutY="258.0" onMouseClicked="#likeOnAction" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../image/emoji/like.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <JFXButton ellipsisString="    " layoutX="317.0" layoutY="609.0" onAction="#btnEmojiOnAction" prefHeight="31.0" prefWidth="31.0" text=" " />
+   </children>
+</AnchorPane>
