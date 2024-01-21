@@ -18,6 +18,13 @@ public class Server {
     public static ArrayList<Thread> threadList = new ArrayList<>();
 
 
+    public static void main(String[] args) {
+
+        //start server
+        startServer();
+    }
+
+
     public static void startServer() {
         System.out.println("Server started");
         new Thread(() -> {
@@ -39,7 +46,7 @@ public class Server {
                         //dos.writeUTF(LoginFormController.clientsNames.get(index) + " " + "has joined the chat.");
                         dos.flush();
                     }
-                    System.out.println("Client connected to the server from port : " + socket.getPort());
+                    System.out.println("Client connected to the server");
 
                     //Handling each client from a separate thread
                     handleClient(socket);
