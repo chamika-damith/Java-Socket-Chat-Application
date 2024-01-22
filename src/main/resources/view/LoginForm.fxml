@@ -15,14 +15,14 @@
 
 <AnchorPane fx:id="loginRoot" prefHeight="581.0" prefWidth="361.0" styleClass="WelcomePagebackgroundColor" stylesheets="@../style/loginPage.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.LoginFormController">
    <children>
-      <ImageView fitHeight="68.0" fitWidth="67.0" layoutX="120.0" layoutY="-9.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="68.0" fitWidth="67.0" layoutX="147.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../img/logo.png" />
+            <Image url="@../image/logo.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="119.0" fitWidth="88.0" layoutX="156.0" layoutY="-15.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="119.0" fitWidth="88.0" layoutX="137.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../img/logoname.png" />
+            <Image url="@../image/logoname.png" />
          </image>
       </ImageView>
       <Line endX="-82.60002136230469" endY="1.52587890625E-5" layoutX="246.0" layoutY="148.0" startX="-137.99998474121094" startY="1.52587890625E-5" stroke="#3fb6bf" strokeWidth="5.0" />
@@ -75,7 +75,7 @@
             <Font name="Arial Bold" size="11.0" />
          </font>
       </Text>
-      <JFXButton buttonType="RAISED" layoutX="224.0" layoutY="411.0" prefHeight="26.0" prefWidth="41.0" ripplerFill="#41bbc4" text=" ">
+      <JFXButton buttonType="RAISED" layoutX="224.0" layoutY="411.0" onMouseEntered="#signupOnAction" prefHeight="26.0" prefWidth="41.0" ripplerFill="#41bbc4" text=" ">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>

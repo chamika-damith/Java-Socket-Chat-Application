@@ -231,30 +231,30 @@ public class ClientController implements Initializable {
 
     private void handleReceivedImage(DataInputStream dis) {
         try {
-            /*The dis.read() method reads the length of the image data.👇 */
+            //The dis.read() method reads the length of the image data
             int imageDataLength = dis.readInt();
-            /*Creating a byte array using the length of the image data.👇*/
+            //Creating a byte array using the length of the image data
             byte[] imageData = new byte[imageDataLength];
             dis.readFully(imageData);
 
-            /*Converting the byte array to a buffered image object.👇*/
+            //Converting the byte array to a buffered image object
             ByteArrayInputStream bais = new ByteArrayInputStream(imageData);
             BufferedImage bufferedImage = ImageIO.read(bais);
 
-            /* Convert BufferedImage to JavaFX Image.👇*/
+            //Convert BufferedImage to JavaFX Image
             Image image = SwingFXUtils.toFXImage(bufferedImage, null);
 
-            /* Create an ImageView with the Image.👇*/
+            // Create an ImageView with the Image
             ImageView imageView = new ImageView(image);
             imageView.setPreserveRatio(true);
             imageView.setFitWidth(200);
             imageView.setFitHeight(200);
 
-            //ADD A scroll pane to the image container.👇
+            //ADD A scroll pane to the image container
             ScrollPane scrollPane = new ScrollPane();
             scrollPane.setContent(imageView);
 
-            /* Append the ImageView to the imageContainer.👇*/
+            //Append the ImageView to the imageContainer
             Platform.runLater(() -> myTextBox.getChildren().add(imageView));
         } catch (IOException e) {
             Platform.runLater(() -> {
@@ -275,47 +275,55 @@ public class ClientController implements Initializable {
         File image = fileChooser.showOpenDialog(stage);
         if (image != null) {
             try {
-                /*Reading the image!.👇*/
-                /* Reads the contents of the image file and creates a BufferedImage object called bufferedImage.👇*/
+                //Reading the image!
+                // Reads the contents of the image file and creates a BufferedImage object called bufferedImage
                 BufferedImage bufferedImage = ImageIO.read(image);
 
-                /*This line creates a ByteArrayOutputStream object called byteArrayOutputStream. This stream is used to write the image data as bytes.👇*/
+                //This line creates a ByteArrayOutputStream object called byteArrayOutputStream. This stream is used to write the image data as bytes
                 ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
 
-                /*This line writes the image data from the bufferedImage to the byteArrayOutputStream. The ImageIO.write() method takes three parameters: the image to be written (bufferedImage), the format of the image ("jpg" in this case), and the output stream to which the image data will be written (byteArrayOutputStream).👇*/
+                //This line writes the image data from the bufferedImage to the byteArrayOutputStream. The ImageIO.write() method takes three parameters: the image to be written (bufferedImage), the format of the image ("jpg" in this case), and the output stream to which the image data will be written (byteArrayOutputStream)
                 ImageIO.write(bufferedImage, "jpg", byteArrayOutputStream);
 
-                /*Below line can get the byte image data from the byteArrayOutPutStream and convert it to a byte array.👇 */
+                //Below line can get the byte image data from the byteArrayOutPutStream and convert it to a byte array
                 byte[] imageData = byteArrayOutputStream.toByteArray();
 
-                /*Sending the image through output stream!👇*/
+                //Sending the image through output stream
                 DataOutputStream dos2 = new DataOutputStream(socket.getOutputStream());
-                /*Letting the server know an image is being sent.👇*/
+                //Letting the server know an image is being sent
                 dos2.writeUTF("img");
-                /*Writing the length of the image data.👇*/
+                //Writing the length of the image data
                 dos2.writeInt(imageData.length);
                 dos2.write(imageData);
                 dos2.flush();
 
-                /*Appending the image to the text area.👇*/
-                /* Convert the image data to an Image.👇*/
+                //Appending the image to the text area
+                // Convert the image data to an Image
                 ByteArrayInputStream bais = new ByteArrayInputStream(imageData);
                 BufferedImage bufferredImage = ImageIO.read(bais);
                 Image image1 = new Image(bais);
-                /* Convert BufferedImage to JavaFX Image.👇*/
+                // Convert BufferedImage to JavaFX Image
                 Image image2 = SwingFXUtils.toFXImage(bufferedImage, null);
 
-                /* Create an ImageView with the Image.👇*/
+                // Create an ImageView with the Image
                 ImageView imageView = new ImageView(image2);
                 imageView.setPreserveRatio(true);
                 imageView.setFitWidth(200);
                 imageView.setFitHeight(200);
-                //ADD A scroll pane to the image container.👇
-                ScrollPane scrollPane = new ScrollPane();
-                scrollPane.setContent(imageView);
 
-                /* Append the ImageView to the imageContainer.👇*/
-                Platform.runLater(() -> myTextBox.getChildren().add(imageView));
+
+                HBox hBox=new HBox();
+                hBox.setAlignment(Pos.CENTER_RIGHT);
+                hBox.setPadding(new Insets(5, 5, 5, 10));
+                hBox.getChildren().add(imageView);
+
+
+                //ADD A scroll pane to the image container
+                ScrollPane scrollPane = new ScrollPane();
+                scrollPane.setContent(hBox);
+
+                // Append the ImageView to the imageContainer
+                Platform.runLater(() -> myTextBox.getChildren().add(hBox));
 
 
             } catch (IOException e) {

@@ -4,12 +4,15 @@ import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import org.example.server.Server;
 
@@ -23,6 +26,7 @@ public class LoginFormController implements Initializable {
     public static ArrayList<String> clientsNames = new ArrayList<>();
     public JFXTextField t1;
     public JFXButton b1;
+    public AnchorPane loginRoot;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -65,5 +69,10 @@ public class LoginFormController implements Initializable {
         });
 
 
+    }
+
+    public void signupOnAction(MouseEvent mouseEvent) throws IOException {
+        loginRoot.getChildren().clear();
+        loginRoot.getChildren().add(FXMLLoader.load(getClass().getResource("/view/SignupForm.fxml")));
     }
 }
