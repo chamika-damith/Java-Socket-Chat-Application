@@ -36,12 +36,14 @@ public class LoginFormController implements Initializable {
 
     public void loginOnAction(ActionEvent actionEvent) throws SQLException {
         clientName = t1.getText();
-        clientsNames.add(clientName);
-        t1.clear();
-        Stage primaryStage = new Stage();
 
         boolean b = clientModel.searchClient(clientName);
         if (b){
+
+            clientsNames.add(clientName);
+            t1.clear();
+            Stage primaryStage = new Stage();
+
             try {
                 primaryStage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/Client.fxml"))));
             } catch (IOException e) {
@@ -65,18 +67,19 @@ public class LoginFormController implements Initializable {
                 // Handling the user's response
                 ButtonType result = alert.showAndWait().orElse(ButtonType.CANCEL);
                 if (result == ButtonType.OK) {
-                    Server.handleExitedClient(clientsNames.indexOf(primaryStage.getTitle()));
+                    int clientIndex = clientsNames.indexOf(primaryStage.getTitle());
+                    if (clientIndex != -1) {
+                        Server.handleExitedClient(clientIndex);
+                    }
                     primaryStage.close();
-
-
                 } else {
                     // Cancelling the close request.
                     event.consume();
                 }
             });
         }else {
+            t1.clear();
             Alert alert = new Alert(Alert.AlertType.ERROR, "Username not found", ButtonType.OK);
-
             Stage alertStage = (Stage) alert.getDialogPane().getScene().getWindow();
             alertStage.getScene().getStylesheets().add(getClass().getResource("/style/notification.css").toExternalForm());
             alert.showAndWait();

@@ -3,7 +3,9 @@ package org.example.controller;
 import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Alert;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import org.example.model.ClientModel;
 
 import java.io.IOException;
@@ -24,10 +26,6 @@ public class SignupFormController {
         name=userName.getText();
     }
 
-    public void btnSignUpOnAction(ActionEvent actionEvent) {
-        email=txtEmail.getText();
-    }
-
     public void SignUpOnAction(ActionEvent actionEvent) throws IOException, SQLException {
         name=userName.getText();
         if (userName!=null){
@@ -45,7 +43,7 @@ public class SignupFormController {
         name=userName.getText();
         if (name!=null){
             clientModel.saveClient(name);
-            System.out.println("saved client");
+            new Alert(Alert.AlertType.INFORMATION, "Saved client").show();
         }
         name=null;
     }

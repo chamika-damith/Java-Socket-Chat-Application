@@ -1,5 +1,4 @@
 package org.example.controller;
-import animatefx.animation.LightSpeedIn;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import javafx.animation.KeyFrame;
@@ -163,7 +162,10 @@ public class ClientController implements Initializable {
 
             } catch (IOException e) {
                 Platform.runLater(() -> {
-                    new Alert(Alert.AlertType.ERROR, "Error while connecting to the server ! : " + e.getLocalizedMessage()).show();
+                    Alert alert = new Alert(Alert.AlertType.ERROR, "Error while connecting to the server ! : " + e.getLocalizedMessage());
+                    Stage alertStage = (Stage) alert.getDialogPane().getScene().getWindow();
+                    alertStage.getScene().getStylesheets().add(getClass().getResource("/style/notification.css").toExternalForm());
+                    alert.showAndWait();
                 });
             }
 
@@ -180,7 +182,10 @@ public class ClientController implements Initializable {
 
     public void sendButtonOnAction(ActionEvent actionEvent) {
         if (msgField.getText().isEmpty()) {
-            new Alert(Alert.AlertType.ERROR, "Cannot send empty messages !  ").show();
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Cannot send empty messages !  ");
+            Stage alertStage = (Stage) alert.getDialogPane().getScene().getWindow();
+            alertStage.getScene().getStylesheets().add(getClass().getResource("/style/notification.css").toExternalForm());
+            alert.showAndWait();
 
         } else {
             new Thread(() -> {
@@ -218,7 +223,10 @@ public class ClientController implements Initializable {
                     dos.flush();
                     msgField.clear();
                 } catch (IOException e) {
-                    new Alert(Alert.AlertType.ERROR, "Error while sending the message ! : " + e.getLocalizedMessage()).show();
+                    Alert alert = new Alert(Alert.AlertType.ERROR, "Error while sending the message ! : " + e.getLocalizedMessage());
+                    Stage alertStage = (Stage) alert.getDialogPane().getScene().getWindow();
+                    alertStage.getScene().getStylesheets().add(getClass().getResource("/style/notification.css").toExternalForm());
+                    alert.showAndWait();
                 }
 
 
@@ -258,7 +266,11 @@ public class ClientController implements Initializable {
             Platform.runLater(() -> myTextBox.getChildren().add(imageView));
         } catch (IOException e) {
             Platform.runLater(() -> {
-                new Alert(Alert.AlertType.ERROR, "Error while handling the received image: " + e.getLocalizedMessage()).show();
+                Alert alert = new Alert(Alert.AlertType.ERROR, "Error while handling the received image: " + e.getLocalizedMessage());
+
+                Stage alertStage = (Stage) alert.getDialogPane().getScene().getWindow();
+                alertStage.getScene().getStylesheets().add(getClass().getResource("/style/notification.css").toExternalForm());
+                alert.showAndWait();
             });
         }
     }
@@ -327,11 +339,17 @@ public class ClientController implements Initializable {
 
 
             } catch (IOException e) {
-                new Alert(Alert.AlertType.ERROR, "Error while reading the image data !").show();
+                Alert alert = new Alert(Alert.AlertType.ERROR, "Error while reading the image data !");
+                Stage alertStage = (Stage) alert.getDialogPane().getScene().getWindow();
+                alertStage.getScene().getStylesheets().add(getClass().getResource("/style/notification.css").toExternalForm());
+                alert.showAndWait();
             }
 
         } else {
-            new Alert(Alert.AlertType.ERROR, "Error while selecting the image !").show();
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Error while selecting the image !");
+            Stage alertStage = (Stage) alert.getDialogPane().getScene().getWindow();
+            alertStage.getScene().getStylesheets().add(getClass().getResource("/style/notification.css").toExternalForm());
+            alert.showAndWait();
         }
     }
 

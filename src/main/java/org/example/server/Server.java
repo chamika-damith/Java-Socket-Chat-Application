@@ -165,12 +165,11 @@ public class Server {
 
     }
 
-    public static void handleExitedClient(int exitedClientIndex){
+    public static void handleExitedClient(int exitedClientIndex) {
         Socket exitedClient = Server.socketArrayList.get(exitedClientIndex);
         for (Socket s : Server.socketArrayList) {
             if (s.getPort() == exitedClient.getPort()) {
                 continue;
-
             }
             try {
                 DataOutputStream dos = new DataOutputStream(s.getOutputStream());
@@ -184,14 +183,12 @@ public class Server {
                     alert.showAndWait();
                 });
             }
-
         }
-        //Closing the socket and interrupting the relevant thread
+        // Closing the socket and interrupting the relevant thread
         new Thread(() -> {
             try {
                 exitedClient.close();
                 Server.threadList.get(exitedClientIndex).interrupt();
-
             } catch (IOException e) {
                 Platform.runLater(() -> {
                     Alert alert = new Alert(Alert.AlertType.ERROR, "Error while exiting the client socket. : " + e.getLocalizedMessage());
@@ -201,8 +198,6 @@ public class Server {
                 });
             }
         }).start();
-
     }
-
 
 }
