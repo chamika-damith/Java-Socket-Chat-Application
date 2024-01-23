@@ -2,6 +2,7 @@ package org.example.server;
 
 import javafx.application.Platform;
 import javafx.scene.control.Alert;
+import javafx.stage.Stage;
 import org.example.controller.LoginFormController;
 
 import java.io.DataInputStream;
@@ -100,7 +101,10 @@ public class Server {
             sendImageToOthers(imageData, senderSocket);
         } catch (IOException e) {
             Platform.runLater(() -> {
-                new Alert(Alert.AlertType.ERROR, "Error while handling the received image: " + e.getLocalizedMessage()).show();
+                Alert alert = new Alert(Alert.AlertType.ERROR, "Error while handling the received image: " + e.getLocalizedMessage());
+                Stage alertStage = (Stage) alert.getDialogPane().getScene().getWindow();
+                alertStage.getScene().getStylesheets().add(Server.class.getResource("/style/notification.css").toExternalForm());
+                alert.showAndWait();
             });
         }
     }
@@ -124,7 +128,10 @@ public class Server {
                 dos.flush();
             } catch (IOException e) {
                 Platform.runLater(() -> {
-                    new Alert(Alert.AlertType.ERROR, "Error while getting the output stream: " + e.getLocalizedMessage()).show();
+                    Alert alert = new Alert(Alert.AlertType.ERROR, "Error while getting the output stream: " + e.getLocalizedMessage());
+                    Stage alertStage = (Stage) alert.getDialogPane().getScene().getWindow();
+                    alertStage.getScene().getStylesheets().add(Server.class.getResource("/style/notification.css").toExternalForm());
+                    alert.showAndWait();
                 });
             }
         }
@@ -141,15 +148,16 @@ public class Server {
 
                 }
                 DataOutputStream dos = new DataOutputStream(s.getOutputStream());
-                /*Since socketArray index == clientsNames array client name index.*/
+                //Since socketArray index == clientsNames array client name index
                 index = socketArrayList.indexOf(socket);
-                System.out.println("index "+index);
-                System.out.println(LoginFormController.clientsNames);
                 dos.writeUTF(LoginFormController.clientsNames.get(index) + " : " + msg);
                 dos.flush();
             } catch (IOException e) {
                 Platform.runLater(() -> {
-                    new Alert(Alert.AlertType.ERROR, "Error while getting the output stream : " + e.getLocalizedMessage()).show();
+                    Alert alert = new Alert(Alert.AlertType.ERROR, "Error while getting the output stream : " + e.getLocalizedMessage());
+                    Stage alertStage = (Stage) alert.getDialogPane().getScene().getWindow();
+                    alertStage.getScene().getStylesheets().add(Server.class.getResource("/style/notification.css").toExternalForm());
+                    alert.showAndWait();
                 });
             }
 
@@ -170,12 +178,15 @@ public class Server {
                 dos.flush();
             } catch (IOException e) {
                 Platform.runLater(() -> {
-                    new Alert(Alert.AlertType.ERROR, "Error while handling the client exit! : " + e.getLocalizedMessage()).show();
+                    Alert alert = new Alert(Alert.AlertType.ERROR, "Error while handling the client exit! : " + e.getLocalizedMessage());
+                    Stage alertStage = (Stage) alert.getDialogPane().getScene().getWindow();
+                    alertStage.getScene().getStylesheets().add(Server.class.getResource("/style/notification.css").toExternalForm());
+                    alert.showAndWait();
                 });
             }
 
         }
-        /*Closing the socket and interrupting the relevant thread.👇*/
+        //Closing the socket and interrupting the relevant thread
         new Thread(() -> {
             try {
                 exitedClient.close();
@@ -183,7 +194,10 @@ public class Server {
 
             } catch (IOException e) {
                 Platform.runLater(() -> {
-                    new Alert(Alert.AlertType.ERROR, "Error while exiting the client socket. : " + e.getLocalizedMessage()).show();
+                    Alert alert = new Alert(Alert.AlertType.ERROR, "Error while exiting the client socket. : " + e.getLocalizedMessage());
+                    Stage alertStage = (Stage) alert.getDialogPane().getScene().getWindow();
+                    alertStage.getScene().getStylesheets().add(Server.class.getResource("/style/notification.css").toExternalForm());
+                    alert.showAndWait();
                 });
             }
         }).start();

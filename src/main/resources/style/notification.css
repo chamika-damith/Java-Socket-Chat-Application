@@ -1,0 +1,23 @@
+.root {
+    -fx-background-color: #f0f0f0; /* Background color */
+}
+
+.dialog-pane {
+    -fx-background-color: #ffffff; /* Dialog pane background color */
+}
+
+.label {
+    -fx-text-fill: #e84343; /* Text color */
+    -fx-font-weight: bold; /* Font weight */
+}
+
+.button {
+    -fx-background-color: #fc6868; /* Green background color for buttons */
+    -fx-text-fill: #ffffff; /* Text color for buttons */
+    -fx-font-weight: bold; /* Font weight for buttons */
+    -fx-cursor: hand; /* Set cursor to hand */
+}
+
+.button:hover {
+    -fx-background-color: #45a049; /* Darker green when button is hovered */
+}

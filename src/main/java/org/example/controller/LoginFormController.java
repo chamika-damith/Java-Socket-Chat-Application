@@ -45,7 +45,11 @@ public class LoginFormController implements Initializable {
             try {
                 primaryStage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/Client.fxml"))));
             } catch (IOException e) {
-                new Alert(Alert.AlertType.ERROR, "Error while loading the client UI : " + e.getLocalizedMessage()).show();
+                Alert alert = new Alert(Alert.AlertType.ERROR, "Error while loading the client UI : " + e.getLocalizedMessage());
+                Stage alertStage = (Stage) alert.getDialogPane().getScene().getWindow();
+                alertStage.getScene().getStylesheets().add(getClass().getResource("/style/notification.css").toExternalForm());
+                alert.showAndWait();
+
             }
             primaryStage.getIcons().add(new Image("/image/chat.png"));
             primaryStage.setTitle(clientName+" chat");
@@ -71,7 +75,11 @@ public class LoginFormController implements Initializable {
                 }
             });
         }else {
-            System.out.println("user not found");
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Username not found", ButtonType.OK);
+
+            Stage alertStage = (Stage) alert.getDialogPane().getScene().getWindow();
+            alertStage.getScene().getStylesheets().add(getClass().getResource("/style/notification.css").toExternalForm());
+            alert.showAndWait();
         }
 
 

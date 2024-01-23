@@ -50,7 +50,7 @@
          </cursor></JFXButton>
       <ScrollPane fx:id="sp" hbarPolicy="NEVER" layoutX="-2.0" layoutY="46.0" prefHeight="482.0" prefWidth="360.0" vbarPolicy="NEVER">
          <content>
-            <VBox fx:id="myTextBox" prefHeight="477.0" prefWidth="360.0" styleClass="ClientPagebackgroundColor" stylesheets="@../style/loginPage.css">
+            <VBox fx:id="myTextBox" prefHeight="477.0" prefWidth="360.0" styleClass="ClientPagebackgroundColor" stylesheets="@../style/styles.css">
                <cursor>
                   <Cursor fx:constant="DEFAULT" />
                </cursor></VBox>
