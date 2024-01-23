@@ -11,7 +11,7 @@ public class DbConnection {
     private Connection connection;
 
     private DbConnection() throws SQLException {
-        connection= DriverManager.getConnection("jdbc:mysql://localhost:3306","root","2002");
+        connection= DriverManager.getConnection("jdbc:mysql://localhost:3306/chatapp","root","2002");
     }
 
     public static DbConnection getInstance() throws SQLException {

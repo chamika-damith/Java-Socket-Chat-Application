@@ -3,7 +3,6 @@ package org.example.controller;
 import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import org.example.model.ClientModel;
 
@@ -21,6 +20,8 @@ public class SignupFormController {
     private String name;
     private String email;
 
+    private LoginFormController loginFormController;
+
     public void userNameOnAction(ActionEvent actionEvent) {
         name=userName.getText();
     }
@@ -30,16 +31,24 @@ public class SignupFormController {
     }
 
     public void SignUpOnAction(ActionEvent actionEvent) throws IOException, SQLException {
+        name=userName.getText();
         if (userName!=null){
             clientModel.saveClient(name);
 
-            signupRoot.getChildren().clear();
-            signupRoot.getChildren().add(FXMLLoader.load(getClass().getResource("/view/LoginForm.fxml")));
         }
     }
 
-    public void LoginOnAction(MouseEvent mouseEvent) throws IOException {
+    public void LoginOnAction(ActionEvent mouseEvent) throws IOException {
         signupRoot.getChildren().clear();
         signupRoot.getChildren().add(FXMLLoader.load(getClass().getResource("/view/LoginForm.fxml")));
+    }
+
+    public void btnSignupOnAction(ActionEvent actionEvent) throws SQLException {
+        name=userName.getText();
+        if (name!=null){
+            clientModel.saveClient(name);
+            System.out.println("saved client");
+        }
+        name=null;
     }
 }

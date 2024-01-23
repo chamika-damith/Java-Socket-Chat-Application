@@ -75,7 +75,7 @@
             <Font name="Arial Bold" size="11.0" />
          </font>
       </Text>
-      <JFXButton buttonType="RAISED" layoutX="224.0" layoutY="411.0" onMouseEntered="#signupOnAction" prefHeight="26.0" prefWidth="41.0" ripplerFill="#41bbc4" text=" ">
+      <JFXButton buttonType="RAISED" layoutX="224.0" layoutY="411.0" onAction="#signupOnAction" prefHeight="26.0" prefWidth="41.0" ripplerFill="#41bbc4" text=" ">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>

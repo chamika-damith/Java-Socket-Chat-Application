@@ -48,7 +48,7 @@ public class Server {
                 }
             } catch (IOException e) {
                 Platform.runLater(() -> {
-                    new Alert(Alert.AlertType.ERROR, "Error while starting the server : " + e.getLocalizedMessage()).show();
+//                    System.out.println("Error while starting the server : " + e.getLocalizedMessage());
                 });
             }
 
