@@ -12,55 +12,55 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="WelcomeRoot" prefHeight="658.0" prefWidth="402.0" styleClass="WelcomePagebackgroundColor" stylesheets="@../style/loginPage.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.WelcomeFormController">
+<AnchorPane fx:id="WelcomeRoot" prefHeight="581.0" prefWidth="361.0" styleClass="WelcomePagebackgroundColor" stylesheets="@../style/loginPage.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.WelcomeFormController">
    <children>
-      <Text layoutX="54.0" layoutY="168.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Connect" wrappingWidth="181.9678955078125">
+      <Text layoutX="43.0" layoutY="141.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Connect" wrappingWidth="181.9678955078125">
          <font>
             <Font name="Bodoni MT" size="47.0" />
          </font>
       </Text>
-      <Text layoutX="54.0" layoutY="226.0" strokeType="OUTSIDE" strokeWidth="0.0" text="friends " wrappingWidth="181.9678955078125">
+      <Text layoutX="43.0" layoutY="199.0" strokeType="OUTSIDE" strokeWidth="0.0" text="friends " wrappingWidth="181.9678955078125">
          <font>
             <Font name="Bodoni MT" size="47.0" />
          </font>
       </Text>
-      <Text layoutX="54.0" layoutY="283.0" strokeType="OUTSIDE" strokeWidth="0.0" text="easily &amp;" wrappingWidth="181.9678955078125">
+      <Text layoutX="43.0" layoutY="256.0" strokeType="OUTSIDE" strokeWidth="0.0" text="easily &amp;" wrappingWidth="181.9678955078125">
          <font>
             <Font name="Bodoni MT" size="47.0" />
          </font>
       </Text>
-      <Text layoutX="54.0" layoutY="337.0" strokeType="OUTSIDE" strokeWidth="0.0" text="quickly" wrappingWidth="194.76788330078125">
+      <Text layoutX="43.0" layoutY="310.0" strokeType="OUTSIDE" strokeWidth="0.0" text="quickly" wrappingWidth="194.76788330078125">
          <font>
             <Font name="Bodoni MT" size="47.0" />
          </font>
       </Text>
-      <ImageView fitHeight="88.0" fitWidth="88.0" layoutX="157.0" layoutY="37.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="88.0" fitWidth="88.0" layoutX="138.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../image/logoname.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="119.0" fitWidth="88.0" layoutX="157.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="119.0" fitWidth="88.0" layoutX="138.0" layoutY="-17.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../image/logo.png" />
          </image>
       </ImageView>
-      <Text layoutX="58.0" layoutY="375.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Our chat app is the perfect way to stay connected with friends." wrappingWidth="248.3678436279297">
+      <Text layoutX="47.0" layoutY="348.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Our chat app is the perfect way to stay connected with friends." wrappingWidth="248.3678436279297">
          <font>
             <Font name="Arial Bold" size="12.0" />
          </font>
       </Text>
       <Group layoutX="92.0" layoutY="401.0" />
-      <Text layoutX="143.0" layoutY="640.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Play Tech Pvt (Ltd)" wrappingWidth="115.56781005859375">
+      <Text layoutX="134.0" layoutY="570.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Play Tech Pvt (Ltd)" wrappingWidth="96.3677978515625">
          <font>
             <Font name="Arial Bold" size="10.0" />
          </font>
       </Text>
-      <JFXButton buttonType="RAISED" layoutX="139.0" layoutY="470.0" prefHeight="46.0" prefWidth="146.0" style="-fx-border-radius: 20; -fx-background-radius: 20; -fx-background-color: #2897a1;" text=" ">
+      <JFXButton buttonType="RAISED" layoutX="120.0" layoutY="422.0" prefHeight="46.0" prefWidth="146.0" style="-fx-border-radius: 20; -fx-background-radius: 20; -fx-background-color: #2897a1;" text=" ">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
-      <JFXButton layoutX="116.0" layoutY="470.0" onAction="#btnGetStartOnAction" prefHeight="46.0" prefWidth="146.0" style="-fx-background-color: #2897a1; -fx-background-radius: 9; -fx-border-color: 233B2E;" text="Get start..." textFill="WHITE">
+      <JFXButton layoutX="97.0" layoutY="422.0" onAction="#btnGetStartOnAction" prefHeight="46.0" prefWidth="146.0" style="-fx-background-color: #2897a1; -fx-background-radius: 9; -fx-border-color: 233B2E;" text="Get start..." textFill="WHITE">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>

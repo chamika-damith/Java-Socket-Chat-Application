@@ -20,8 +20,6 @@ public class SignupFormController {
     private String name;
     private String email;
 
-    private LoginFormController loginFormController;
-
     public void userNameOnAction(ActionEvent actionEvent) {
         name=userName.getText();
     }
